@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ar">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>الأستاذ سايج محمد - محامي معتمد</title>
+    <meta name="description" content="صفحة هبوط احترافية للمحامي الجزائري الأستاذ سايج محمد، تعرض الخدمات القانونية ومجالات الخبرة وطرق التواصل." />
+    <meta name="keywords" content="محامي, الجزائر, سايج محمد, استشارة قانونية, القانون الجزائي, قانون الأسرة, القانون التجاري, محامي في بئر مراد رايس, avocat, alger, algerie, saidj mohamed, legal consultation, algerian law" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 80px; /* Adjust based on sticky header height */
+      }
+      body {
+        font-family: 'Cairo', sans-serif;
+      }
+      .bg-grid-pattern {
+        background-image: linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+        background-size: 2rem 2rem;
+      }
+      .bg-dot-pattern {
+        background-image: radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.08) 1px, transparent 0);
+        background-size: 1.5rem 1.5rem;
+      }
+      .card-glow {
+        transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+      }
+      .card-glow:hover {
+        transform: translateY(-0.5rem);
+        box-shadow: 0 0 25px 0 rgba(13, 148, 136, 0.2); /* teal-600 with opacity */
+      }
+      @keyframes jump {
+        0%, 100% { transform: translateY(0) scale(1); }
+        50% { transform: translateY(-10px) scale(1.05); }
+      }
+      .animate-jump {
+        animation: jump 1.5s ease-in-out infinite;
+      }
+      @keyframes ping {
+        75%, 100% {
+          transform: scale(2);
+          opacity: 0;
+        }
+      }
+      .animate-ping-slow {
+        animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.1.1/",
+    "react": "https://aistudiocdn.com/react@^19.1.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
+    "@google/genai": "https://esm.run/@google/genai"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx" defer></script>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
