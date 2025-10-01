@@ -1,5 +1,62 @@
 {
-  "ar": [],
-  "fr": [],
-  "en": []
+  "ar": [
+    {
+      "image_url": "https://images.unsplash.com/photo-1621452773352-0f04c8f5228c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "category": "قانون مالي",
+      "title": "الإطار القانوني للعملات الرقمية في الجزائر: بين الحظر والتجريم",
+      "excerpt": "يستعرض هذا المقال الموقف الصارم للمشرع الجزائري تجاه العملات المشفرة، مع تحليل للمادة 117 من قانون المالية لعام 2018 التي تحظر حيازتها واستخدامها، والعقوبات المترتبة على ذلك."
+    },
+    {
+      "image_url": "https://images.unsplash.com/photo-1556742044-3c52d6e88c62?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "category": "قانون العقوبات",
+      "title": "جريمة النصب والاحتيال في القانون الجزائري: الأركان والعقوبات",
+      "excerpt": "شرح مفصل لجريمة النصب والاحتيال، يتناول الأركان المادية والمعنوية التي يجب توافرها لقيام الجريمة، والأساليب الاحتيالية المختلفة، بالإضافة إلى العقوبات التي نص عليها قانون العقوبات الجزائري."
+    },
+    {
+      "image_url": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1973&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "category": "قانون عقاري",
+      "title": "دعوى الخروج من الشيوع: كيفية قسمة الممتلكات المشتركة قانونياً",
+      "excerpt": "يتناول هذا المقال الإجراءات القانونية لإنهاء حالة الشيوع في الممتلكات، سواء كانت عقارات أو منقولات. نستعرض فيه الطرق المختلفة للقسمة، من القسمة الرضائية إلى القسمة القضائية، وحقوق كل شريك."
+    }
+  ],
+  "fr": [
+    {
+      "image_url": "https://images.unsplash.com/photo-1621452773352-0f04c8f5228c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "category": "Droit Financier",
+      "title": "Le cadre juridique des cryptomonnaies en Algérie : Entre interdiction et criminalisation",
+      "excerpt": "Cet article examine la position stricte du législateur algérien sur les cryptomonnaies, analysant l'article 117 de la loi de finances 2018 qui interdit leur possession et utilisation, ainsi que les sanctions encourues."
+    },
+    {
+      "image_url": "https://images.unsplash.com/photo-1556742044-3c52d6e88c62?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "category": "Droit Pénal",
+      "title": "Le délit d'escroquerie en droit algérien : Éléments constitutifs et sanctions",
+      "excerpt": "Une explication détaillée du délit d'escroquerie, abordant les éléments matériels et moraux requis, les différentes méthodes frauduleuses, ainsi que les sanctions prévues par le Code pénal algérien."
+    },
+    {
+      "image_url": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1973&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "category": "Droit Immobilier",
+      "title": "L'action en sortie d'indivision : Comment partager légalement un bien commun",
+      "excerpt": "Cet article traite des procédures légales pour mettre fin à une situation d'indivision sur un bien. Nous y examinons les différentes méthodes de partage, du partage amiable au partage judiciaire, et les droits de chaque co-indivisaire."
+    }
+  ],
+  "en": [
+    {
+      "image_url": "https://images.unsplash.com/photo-1621452773352-0f04c8f5228c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "category": "Financial Law",
+      "title": "The Legal Framework for Cryptocurrencies in Algeria: Between Prohibition and Criminalization",
+      "excerpt": "This article reviews the strict stance of the Algerian legislator on cryptocurrencies, analyzing Article 117 of the 2018 Finance Law which prohibits their possession and use, and the resulting penalties."
+    },
+    {
+      "image_url": "https://images.unsplash.com/photo-1556742044-3c52d6e88c62?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "category": "Penal Law",
+      "title": "The Crime of Fraud and Swindling in Algerian Law: Elements and Penalties",
+      "excerpt": "A detailed explanation of the crime of fraud, covering the material and moral elements required, various fraudulent methods, and the penalties stipulated by the Algerian Penal Code."
+    },
+    {
+      "image_url": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1973&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "category": "Real Estate Law",
+      "title": "Action to Exit Joint Ownership: How to Legally Divide Common Property",
+      "excerpt": "This article covers the legal procedures for ending a state of joint ownership of property. We review the different methods of division, from amicable partition to judicial partition, and the rights of each co-owner."
+    }
+  ]
 }

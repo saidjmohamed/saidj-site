@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import ErrorDisplay from './components/ErrorDisplay';
 import { translations } from './translations';
+import { getInitialLanguage, Language } from './contexts/LanguageContext';
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {
@@ -33,7 +34,7 @@ const initializeApp = () => {
     );
   } else {
     // If the key is missing or invalid, render a helpful error page
-    const lang = (document.documentElement.lang || 'ar') as 'ar' | 'fr' | 'en';
+    const lang: Language = getInitialLanguage();
     root.render(
       <React.StrictMode>
         <ErrorDisplay 

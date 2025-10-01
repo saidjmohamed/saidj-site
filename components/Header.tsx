@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { GavelIcon } from './icons';
+import LanguageSwitcher from './LanguageSwitcher';
 
 const Header: React.FC = () => {
   const { t } = useLanguage();
@@ -37,7 +38,7 @@ const Header: React.FC = () => {
             <span>{t('lawyer_name')}</span>
           </a>
           
-          <div className="flex items-center">
+          <div className="flex items-center gap-4 sm:gap-6">
             <nav className="hidden md:flex items-center gap-3 sm:gap-4 lg:gap-6">
               {navLinks.map(link => (
                 <a 
@@ -50,6 +51,8 @@ const Header: React.FC = () => {
                 </a>
               ))}
             </nav>
+            <div className="hidden md:block h-6 w-px bg-slate-700"></div>
+            <LanguageSwitcher />
           </div>
         </div>
       </div>

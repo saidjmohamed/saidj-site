@@ -50,6 +50,23 @@
         animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
       }
     </style>
+  <script>
+    // This script sets the language and text direction as early as possible to prevent flashing.
+    (function() {
+      var storedLang = localStorage.getItem('language');
+      var browserLang = navigator.language.split('-')[0];
+      var lang = 'ar'; // Default language
+
+      if (storedLang && ['ar', 'fr', 'en'].includes(storedLang)) {
+        lang = storedLang;
+      } else if (['fr', 'en'].includes(browserLang)) {
+        lang = browserLang;
+      }
+      
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    })();
+  </script>
   <script type="importmap">
 {
   "imports": {
