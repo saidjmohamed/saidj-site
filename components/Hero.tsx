@@ -20,7 +20,7 @@ const Hero: React.FC = () => {
     <section 
       id="hero"
       className="relative bg-cover bg-center text-white py-40 px-6"
-      style={{ backgroundImage: "url('https://images.unsplash.com/photo-1589216532372-1c2a367902d9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')" }}
+      style={{ backgroundImage: "url('https://images.pexels.com/photos/5669602/pexels-photo-5669602.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')" }}
     >
       <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
       <div className="relative container mx-auto text-center z-10">
