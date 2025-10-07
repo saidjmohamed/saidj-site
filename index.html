@@ -1,87 +1,276 @@
-<!DOCTYPE html>
-<html lang="ar">
+<!doctype html>
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>الأستاذ سايج محمد - محامي معتمد</title>
-    <meta name="description" content="صفحة هبوط احترافية للمحامي الجزائري الأستاذ سايج محمد، تعرض الخدمات القانونية ومجالات الخبرة وطرق التواصل." />
-    <meta name="keywords" content="محامي, الجزائر, سايج محمد, استشارة قانونية, القانون الجزائي, قانون الأسرة, القانون التجاري, محامي في بئر مراد رايس, avocat, alger, algerie, saidj mohamed, legal consultation, algerian law" />
-    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="المحامي سعيد محمد - خبرة قانونية متميزة في جميع مجالات القانون" />
+    <meta name="keywords" content="محامي, قانون, استشارات قانونية, الجزائر, سعيد محمد" />
+    <meta name="author" content="المحامي سعيد محمد" />
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="المحامي سعيد محمد - خبرة قانونية متميزة" />
+    <meta property="og:description" content="خبرة قانونية متميزة في جميع مجالات القانون مع أفضل الخدمات الاستشارية" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/og-image.jpg" />
+    
+    <!-- Modern Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
-    <style>
-      html {
-        scroll-behavior: smooth;
-        scroll-padding-top: 80px; /* Adjust based on sticky header height */
-      }
-      body {
-        font-family: 'Cairo', sans-serif;
-      }
-      .bg-grid-pattern {
-        background-image: linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
-        background-size: 2rem 2rem;
-      }
-      .bg-dot-pattern {
-        background-image: radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.08) 1px, transparent 0);
-        background-size: 1.5rem 1.5rem;
-      }
-      .card-glow {
-        transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
-      }
-      .card-glow:hover {
-        transform: translateY(-0.5rem);
-        box-shadow: 0 0 25px 0 rgba(13, 148, 136, 0.2); /* teal-600 with opacity */
-      }
-      @keyframes jump {
-        0%, 100% { transform: translateY(0) scale(1); }
-        50% { transform: translateY(-10px) scale(1.05); }
-      }
-      .animate-jump {
-        animation: jump 1.5s ease-in-out infinite;
-      }
-      @keyframes ping {
-        75%, 100% {
-          transform: scale(2);
-          opacity: 0;
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&family=Cairo:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Modern Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- Enhanced CSS Files -->
+    <link rel="stylesheet" href="./styles/enhanced.css" />
+    <link rel="stylesheet" href="./styles/modern-enhanced.css" />
+    
+    <!-- Tailwind CSS (for development) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              'inter': ['Inter', 'sans-serif'],
+              'poppins': ['Poppins', 'sans-serif'],
+              'cairo': ['Cairo', 'sans-serif'],
+              'mono': ['JetBrains Mono', 'monospace']
+            },
+            colors: {
+              primary: {
+                50: '#f0f9ff',
+                100: '#e0f2fe',
+                200: '#bae6fd',
+                300: '#7dd3fc',
+                400: '#38bdf8',
+                500: '#0ea5e9',
+                600: '#0284c7',
+                700: '#0369a1',
+                800: '#075985',
+                900: '#0c4a6e'
+              },
+              secondary: {
+                50: '#fdf4ff',
+                100: '#fae8ff',
+                200: '#f5d0fe',
+                300: '#f0abfc',
+                400: '#e879f9',
+                500: '#d946ef',
+                600: '#c026d3',
+                700: '#a21caf',
+                800: '#86198f',
+                900: '#701a75'
+              }
+            },
+            animation: {
+              'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+              'fade-in-scale': 'fadeInScale 0.8s ease-out forwards',
+              'slide-in-left': 'slideInLeft 0.8s ease-out forwards',
+              'slide-in-right': 'slideInRight 0.8s ease-out forwards',
+              'bounce-in': 'bounceIn 0.6s ease-out forwards',
+              'rotate-in': 'rotateIn 0.8s ease-out forwards',
+              'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
+              'float': 'float 3s ease-in-out infinite',
+              'shake': 'shake 0.5s ease-in-out',
+              'typewriter': 'typewriter 2s steps(40, end), blink 1s step-end infinite'
+            },
+            backdropBlur: {
+              'xs': '2px'
+            },
+            backgroundImage: {
+              'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+              'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))'
+            }
+          }
         }
       }
-      .animate-ping-slow {
-        animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
-      }
-    </style>
-  <script>
-    // This script sets the language and text direction as early as possible to prevent flashing.
-    (function() {
-      var storedLang = localStorage.getItem('language');
-      var browserLang = navigator.language.split('-')[0];
-      var lang = 'ar'; // Default language
-
-      if (storedLang && ['ar', 'fr', 'en'].includes(storedLang)) {
-        lang = storedLang;
-      } else if (['fr', 'en'].includes(browserLang)) {
-        lang = browserLang;
+    </script>
+    
+    <!-- Custom Styles -->
+    <style>
+      /* CSS Variables for Dynamic Theming */
+      :root {
+        --primary-hue: 210;
+        --primary-saturation: 100%;
+        --primary-lightness: 50%;
+        --glass-opacity: 0.1;
+        --blur-strength: 20px;
       }
       
-      document.documentElement.lang = lang;
-      document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-    })();
-  </script>
-  <script type="importmap">
-{
-  "imports": {
-    "react/": "https://aistudiocdn.com/react@^19.1.1/",
-    "react": "https://aistudiocdn.com/react@^19.1.1",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
-    "@google/genai": "https://esm.run/@google/genai"
-  }
-}
-</script>
-<link rel="stylesheet" href="/index.css">
-</head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/index.tsx" defer></script>
-  <script type="module" src="/index.tsx"></script>
-</body>
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      
+      ::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+      }
+      
+      ::-webkit-scrollbar-thumb {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        border-radius: 10px;
+        transition: all 0.3s ease;
+      }
+      
+      ::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(135deg, #764ba2, #f093fb);
+      }
+      
+      /* Preloader styles */
+      .preloader {
+        position: fixed;
+        inset: 0;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease, visibility 0.5s ease;
+      }
+      
+      .preloader.hidden {
+        opacity: 0;
+        visibility: hidden;
+      }
+      
+      .loader {
+        width: 60px;
+        height: 60px;
+        border: 3px solid rgba(255, 255, 255, 0.3);
+        border-top: 3px solid white;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      
+      /* Performance optimizations */
+      .gpu-accelerated {
+        transform: translateZ(0);
+        will-change: transform;
+      }
+      
+      /* Smooth text rendering */
+      * {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+      }
+      
+      /* Focus styles for accessibility */
+      .focus-visible:focus {
+        outline: 2px solid #667eea;
+        outline-offset: 2px;
+      }
+      
+      /* Reduced motion support */
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+    
+    <title>المحامي سعيد محمد | خبرة قانونية متميزة</title>
+  </head>
+  <body class="antialiased selection:bg-purple-500/20 selection:text-white">
+    <!-- Preloader -->
+    <div id="preloader" class="preloader">
+      <div class="flex flex-col items-center gap-4">
+        <div class="loader"></div>
+        <div class="text-white text-lg font-medium animate-pulse">جاري التحميل...</div>
+      </div>
+    </div>
+    
+    <!-- Main App Container -->
+    <div id="root" class="custom-scrollbar"></div>
+    
+    <!-- Performance Scripts -->
+    <script>
+      // Preloader management
+      window.addEventListener('load', function() {
+        const preloader = document.getElementById('preloader');
+        setTimeout(() => {
+          preloader.classList.add('hidden');
+          setTimeout(() => {
+            preloader.remove();
+          }, 500);
+        }, 1000);
+      });
+      
+      // Intersection Observer for animations
+      if ('IntersectionObserver' in window) {
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('revealed');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
+        
+        // Observe elements with reveal class
+        document.addEventListener('DOMContentLoaded', () => {
+          const revealElements = document.querySelectorAll('.reveal');
+          revealElements.forEach(el => observer.observe(el));
+        });
+      }
+      
+      // Smooth scroll polyfill
+      if (!('scrollBehavior' in document.documentElement.style)) {
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/gh/iamdustan/smoothscroll@1.4.10/dist/smoothscroll.min.js';
+        document.head.appendChild(script);
+      }
+      
+      // Performance monitoring
+      if ('performance' in window) {
+        window.addEventListener('load', () => {
+          const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
+          console.log(`Page loaded in ${loadTime}ms`);
+          
+          // Report Core Web Vitals
+          if ('PerformanceObserver' in window) {
+            new PerformanceObserver((list) => {
+              for (const entry of list.getEntries()) {
+                console.log(`${entry.name}: ${entry.value}`);
+              }
+            }).observe({ entryTypes: ['measure', 'navigation', 'paint'] });
+          }
+        });
+      }
+      
+      // Service Worker registration (optional)
+      if ('serviceWorker' in navigator && 'production' === 'production') {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(registration => {
+              console.log('SW registered: ', registration);
+            })
+            .catch(registrationError => {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }
+    </script>
+    
+    <script type="module" src="/index.tsx"></script>
+  </body>
 </html>
