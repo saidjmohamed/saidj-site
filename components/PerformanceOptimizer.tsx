@@ -1,452 +1,452 @@
-import React, { Suspense, lazy, useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useCallback, useMemo, useRef, useState } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 
-// Lazy loading للمكونات الكبيرة
-const LazyAdminPanel = lazy(() => import('./AdminPanel'));
-const LazyChatbot = lazy(() => import('./ChatbotImproved'));
-const LazyLegalArticles = lazy(() => import('./LegalArticles'));
+// Performance monitoring and optimization component
+const PerformanceOptimizer: React.FC = () => {
+  // Intersection Observer for lazy loading and animations
+  const createIntersectionObserver = useCallback(() => {
+    if (!('IntersectionObserver' in window)) return null;
 
-// مكون لتحسين تحميل الصور
-interface OptimizedImageProps {
-  src: string;
-  alt: string;
-  className?: string;
-  width?: number;
-  height?: number;
-  priority?: boolean;
-  sizes?: string;
-  onLoad?: () => void;
-}
+    const observerOptions = {
+      threshold: [0.1, 0.3, 0.7],
+      rootMargin: '0px 0px -50px 0px'
+    };
 
-export const OptimizedImage: React.FC<OptimizedImageProps> = ({
-  src,
-  alt,
-  className = '',
-  width,
-  height,
-  priority = false,
-  sizes = '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw',
-  onLoad
-}) => {
-  const [imageLoaded, setImageLoaded] = useState(false);
-  const [imageError, setImageError] = useState(false);
-
-  const handleLoad = useCallback(() => {
-    setImageLoaded(true);
-    onLoad?.();
-  }, [onLoad]);
-
-  const handleError = useCallback(() => {
-    setImageError(true);
+    return new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const target = entry.target as HTMLElement;
+        
+        // Trigger animations when elements come into view
+        if (entry.isIntersecting) {
+          target.classList.add('revealed');
+          
+          // Add specific animation classes based on data attributes
+          const animationType = target.dataset.animation;
+          if (animationType) {
+            target.classList.add(`animate-${animationType}`);
+          }
+          
+          // Lazy load images
+          if (target.tagName === 'IMG') {
+            const img = target as HTMLImageElement;
+            const dataSrc = img.dataset.src;
+            if (dataSrc) {
+              img.src = dataSrc;
+              img.removeAttribute('data-src');
+            }
+          }
+          
+          // Unobserve the element after animation
+          setTimeout(() => {
+            observer?.unobserve(target);
+          }, 1000);
+        }
+      });
+    }, observerOptions);
   }, []);
 
-  // إنشاء WebP و responsive sources
-  const createResponsiveSources = (originalSrc: string) => {
-    const baseUrl = originalSrc.split('?')[0];
-    const params = originalSrc.split('?')[1] || '';
-    
-    return {
-      webpMobile: `${baseUrl}?${params}&fm=webp&w=768&h=512&fit=crop&q=80`,
-      webpDesktop: `${baseUrl}?${params}&fm=webp&w=1200&h=800&fit=crop&q=85`,
-      jpegMobile: `${baseUrl}?${params}&w=768&h=512&fit=crop&q=80`,
-      jpegDesktop: `${baseUrl}?${params}&w=1200&h=800&fit=crop&q=85`,
-      original: originalSrc
+  // Debounced scroll handler
+  const debounce = useCallback((func: Function, wait: number) => {
+    let timeout: NodeJS.Timeout;
+    return function executedFunction(...args: any[]) {
+      const later = () => {
+        clearTimeout(timeout);
+        func(...args);
+      };
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
     };
-  };
+  }, []);
 
-  const sources = createResponsiveSources(src);
+  // Optimize scroll performance
+  const optimizeScrolling = useCallback(() => {
+    let ticking = false;
+    
+    const updateScrollPosition = () => {
+      const scrolled = window.pageYOffset;
+      const rate = scrolled * -0.3;
+      
+      // Update parallax elements with GPU acceleration
+      const parallaxElements = document.querySelectorAll('.parallax');
+      parallaxElements.forEach((element) => {
+        const htmlElement = element as HTMLElement;
+        htmlElement.style.transform = `translate3d(0, ${rate}px, 0)`;
+      });
+      
+      // Update scroll progress indicator
+      const scrollProgress = (scrolled / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+      const progressBar = document.querySelector('.scroll-progress') as HTMLElement;
+      if (progressBar) {
+        progressBar.style.width = `${scrollProgress}%`;
+      }
+      
+      ticking = false;
+    };
+    
+    const requestTick = () => {
+      if (!ticking) {
+        requestAnimationFrame(updateScrollPosition);
+        ticking = true;
+      }
+    };
+    
+    return debounce(requestTick, 8);
+  }, [debounce]);
 
-  return (
-    <div className={`relative overflow-hidden ${className}`}>
-      {/* Skeleton loader */}
-      {!imageLoaded && !imageError && (
-        <div className="absolute inset-0 bg-gray-200 animate-pulse">
-          <div className="w-full h-full bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 animate-pulse"></div>
-        </div>
-      )}
+  // Preload critical resources
+  const preloadResources = useCallback(() => {
+    // Critical fonts preloading
+    const fonts = [
+      { family: 'Inter', weights: [300, 400, 500, 600, 700] },
+      { family: 'Poppins', weights: [300, 400, 500, 600, 700] },
+      { family: 'Cairo', weights: [300, 400, 500, 600, 700] }
+    ];
+    
+    fonts.forEach(font => {
+      font.weights.forEach(weight => {
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'font';
+        link.type = 'font/woff2';
+        link.href = `https://fonts.gstatic.com/s/${font.family.toLowerCase()}/v12/${font.family}-${weight}.woff2`;
+        link.crossOrigin = 'anonymous';
+        document.head.appendChild(link);
+      });
+    });
+    
+    // Critical images preloading
+    const criticalImages = [
+      '/hero-bg.webp',
+      '/logo.webp',
+      '/about-hero.webp'
+    ];
+    
+    criticalImages.forEach(src => {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'image';
+      link.href = src;
+      link.type = 'image/webp';
+      document.head.appendChild(link);
+    });
 
-      {/* صورة محسنة */}
-      <picture>
-        <source
-          media="(max-width: 768px)"
-          srcSet={`${sources.webpMobile} 1x`}
-          type="image/webp"
-        />
-        <source
-          media="(min-width: 769px)"
-          srcSet={`${sources.webpDesktop} 1x`}
-          type="image/webp"
-        />
-        <source
-          media="(max-width: 768px)"
-          srcSet={`${sources.jpegMobile} 1x`}
-          type="image/jpeg"
-        />
-        <source
-          media="(min-width: 769px)"
-          srcSet={`${sources.jpegDesktop} 1x`}
-          type="image/jpeg"
-        />
-        <img
-          src={sources.original}
-          alt={alt}
-          width={width}
-          height={height}
-          loading={priority ? 'eager' : 'lazy'}
-          decoding="async"
-          onLoad={handleLoad}
-          onError={handleError}
-          className={`w-full h-full object-cover transition-opacity duration-300 ${
-            imageLoaded ? 'opacity-100' : 'opacity-0'
-          }`}
-          sizes={sizes}
-        />
-      </picture>
+    // Preload critical CSS
+    const cssFiles = [
+      '/styles/modern-enhanced.css',
+      '/styles/enhanced.css'
+    ];
+    
+    cssFiles.forEach(href => {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'style';
+      link.href = href;
+      document.head.appendChild(link);
+    });
+  }, []);
 
-      {/* رسالة خطأ */}
-      {imageError && (
-        <div className="absolute inset-0 bg-gray-100 flex items-center justify-center">
-          <div className="text-center text-gray-500">
-            <svg className="w-12 h-12 mx-auto mb-2 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
-            <p className="text-sm">فشل تحميل الصورة</p>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-};
-
-// مكون Skeleton Loader قابل للتخصيص
-interface SkeletonProps {
-  width?: string;
-  height?: string;
-  className?: string;
-  variant?: 'rectangular' | 'circular' | 'text';
-}
-
-export const Skeleton: React.FC<SkeletonProps> = ({
-  width = 'w-full',
-  height = 'h-4',
-  className = '',
-  variant = 'rectangular'
-}) => {
-  const baseClasses = 'animate-pulse bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200';
-  
-  const variantClasses = {
-    rectangular: 'rounded',
-    circular: 'rounded-full',
-    text: 'rounded'
-  };
-
-  return (
-    <div 
-      className={`${baseClasses} ${variantClasses[variant]} ${width} ${height} ${className}`}
-      role="status"
-      aria-label="جار التحميل..."
-    >
-      <span className="sr-only">جار التحميل...</span>
-    </div>
-  );
-};
-
-// مكون تحسين SEO المتقدم
-interface SEOOptimizerProps {
-  title?: string;
-  description?: string;
-  keywords?: string;
-  canonical?: string;
-  ogImage?: string;
-  schemaData?: object;
-}
-
-export const SEOOptimizer: React.FC<SEOOptimizerProps> = ({
-  title,
-  description,
-  keywords,
-  canonical,
-  ogImage,
-  schemaData
-}) => {
-  const { language } = useLanguage();
-  const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
-  const siteUrl = typeof window !== 'undefined' ? window.location.origin : '';
-
-  const defaultTitle = 'الأستاذ سايج محمد - محامي معتمد في الجزائر';
-  const defaultDescription = 'مكتب محاماة متخصص في القانون المدني والجنائي والتجاري والعائلي. استشارات قانونية محترفة في الجزائر.';
-  const defaultKeywords = 'محامي, الجزائر, استشارة قانونية, القانون الجزائري, محكمة, قضايا قانونية, سايج محمد';
-
-  const finalTitle = title || defaultTitle;
-  const finalDescription = description || defaultDescription;
-  const finalKeywords = keywords || defaultKeywords;
-  const finalOgImage = ogImage || `${siteUrl}/og-image.jpg`;
-
-  useEffect(() => {
-    // تحديث العنوان
-    document.title = finalTitle;
-
-    // تحديث meta tags
-    const updateMetaTag = (name: string, content: string, property = false) => {
-      const selector = property ? `meta[property="${name}"]` : `meta[name="${name}"]`;
-      let meta = document.querySelector(selector) as HTMLMetaElement;
-      if (!meta) {
-        meta = document.createElement('meta');
-        if (property) {
-          meta.setAttribute('property', name);
-        } else {
-          meta.setAttribute('name', name);
+  // Monitor Core Web Vitals
+  const monitorCoreWebVitals = useCallback(() => {
+    if (!('PerformanceObserver' in window)) return;
+    
+    // Largest Contentful Paint (LCP)
+    const lcpObserver = new PerformanceObserver((list) => {
+      const entries = list.getEntries();
+      const lastEntry = entries[entries.length - 1];
+      console.log('LCP:', lastEntry.startTime);
+      
+      // Send to analytics if needed
+      if (lastEntry.startTime > 2500) {
+        console.warn('LCP is slower than recommended (2.5s)');
+      }
+    });
+    lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] });
+    
+    // First Input Delay (FID)
+    const fidObserver = new PerformanceObserver((list) => {
+      const entries = list.getEntries();
+      entries.forEach((entry) => {
+        console.log('FID:', entry.processingStart - entry.startTime);
+        
+        if (entry.processingStart - entry.startTime > 100) {
+          console.warn('FID is slower than recommended (100ms)');
         }
-        document.head.appendChild(meta);
-      }
-      meta.content = content;
-    };
-
-    // Basic SEO tags
-    updateMetaTag('description', finalDescription);
-    updateMetaTag('keywords', finalKeywords);
-    updateMetaTag('robots', 'index, follow');
-    updateMetaTag('author', 'الأستاذ سايج محمد');
-    updateMetaTag('language', language);
+      });
+    });
+    fidObserver.observe({ entryTypes: ['first-input'] });
     
-    // Open Graph tags
-    updateMetaTag('og:title', finalTitle, true);
-    updateMetaTag('og:description', finalDescription, true);
-    updateMetaTag('og:image', finalOgImage, true);
-    updateMetaTag('og:url', currentUrl, true);
-    updateMetaTag('og:type', 'website', true);
-    updateMetaTag('og:locale', language === 'ar' ? 'ar_DZ' : language === 'fr' ? 'fr_DZ' : 'en_US', true);
-    updateMetaTag('og:site_name', 'مكتب الأستاذ سايج محمد للمحاماة', true);
-
-    // Twitter Cards
-    updateMetaTag('twitter:card', 'summary_large_image');
-    updateMetaTag('twitter:title', finalTitle);
-    updateMetaTag('twitter:description', finalDescription);
-    updateMetaTag('twitter:image', finalOgImage);
-
-    // Canonical URL
-    let canonicalLink = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
-    if (!canonicalLink) {
-      canonicalLink = document.createElement('link');
-      canonicalLink.rel = 'canonical';
-      document.head.appendChild(canonicalLink);
-    }
-    canonicalLink.href = canonical || currentUrl;
-
-    // Schema.org JSON-LD
-    if (schemaData) {
-      let schemaScript = document.querySelector('#schema-json-ld') as HTMLScriptElement;
-      if (!schemaScript) {
-        schemaScript = document.createElement('script');
-        schemaScript.id = 'schema-json-ld';
-        schemaScript.type = 'application/ld+json';
-        document.head.appendChild(schemaScript);
+    // Cumulative Layout Shift (CLS)
+    let clsValue = 0;
+    const clsObserver = new PerformanceObserver((list) => {
+      for (const entry of list.getEntries()) {
+        if (!(entry as any).hadRecentInput) {
+          clsValue += (entry as any).value;
+        }
       }
-      schemaScript.innerHTML = JSON.stringify(schemaData);
+      console.log('CLS:', clsValue);
+      
+      if (clsValue > 0.1) {
+        console.warn('CLS is higher than recommended (0.1)');
+      }
+    });
+    clsObserver.observe({ entryTypes: ['layout-shift'] });
+    
+    // Memory monitoring
+    if ('memory' in performance) {
+      const checkMemory = () => {
+        const memory = (performance as any).memory;
+        const usedPercent = (memory.usedJSHeapSize / memory.jsHeapSizeLimit) * 100;
+        
+        if (usedPercent > 90) {
+          console.warn(`High memory usage: ${usedPercent.toFixed(1)}%`);
+          // Force garbage collection if available
+          if ('gc' in window) {
+            (window as any).gc();
+          }
+        }
+      };
+      
+      setInterval(checkMemory, 30000); // Check every 30 seconds
     }
-  }, [finalTitle, finalDescription, finalKeywords, finalOgImage, currentUrl, canonical, schemaData, language]);
+  }, []);
 
+  // Optimize images with WebP support and lazy loading
+  const optimizeImages = useCallback(() => {
+    // Check WebP support
+    const supportsWebP = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = 1;
+      canvas.height = 1;
+      return canvas.toDataURL('image/webp').indexOf('data:image/webp') === 0;
+    };
+    
+    const webpSupported = supportsWebP();
+    document.documentElement.classList.toggle('webp-support', webpSupported);
+    
+    // Advanced lazy loading with intersection observer
+    const imageObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target as HTMLImageElement;
+          const src = img.dataset.src;
+          const srcset = img.dataset.srcset;
+          
+          if (src) {
+            // Create new image to preload
+            const newImg = new Image();
+            newImg.onload = () => {
+              img.src = src;
+              if (srcset) img.srcset = srcset;
+              img.classList.remove('lazy', 'skeleton');
+              img.classList.add('loaded');
+            };
+            newImg.src = src;
+            
+            imageObserver.unobserve(img);
+          }
+        }
+      });
+    }, {
+      rootMargin: '50px 0px',
+      threshold: 0.01
+    });
+    
+    // Observe all lazy images
+    document.querySelectorAll('img[data-src]').forEach(img => {
+      img.classList.add('lazy');
+      imageObserver.observe(img);
+    });
+  }, []);
+
+  // Respect reduced motion preferences
+  const respectReducedMotion = useCallback(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    
+    const handleReducedMotion = (mediaQuery: MediaQueryListEvent | MediaQueryList) => {
+      if (mediaQuery.matches) {
+        document.documentElement.classList.add('reduced-motion');
+        
+        // Disable animations
+        const style = document.createElement('style');
+        style.id = 'reduced-motion-styles';
+        style.textContent = `
+          .reduced-motion *,
+          .reduced-motion *::before,
+          .reduced-motion *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+            transform: none !important;
+          }
+          .reduced-motion .parallax {
+            transform: none !important;
+          }
+        `;
+        document.head.appendChild(style);
+      } else {
+        document.documentElement.classList.remove('reduced-motion');
+        const existingStyle = document.getElementById('reduced-motion-styles');
+        if (existingStyle) {
+          existingStyle.remove();
+        }
+      }
+    };
+    
+    handleReducedMotion(prefersReducedMotion);
+    prefersReducedMotion.addEventListener('change', handleReducedMotion);
+  }, []);
+
+  // Advanced resource hints
+  const addResourceHints = useCallback(() => {
+    const hints = [
+      // DNS prefetch for external domains
+      { rel: 'dns-prefetch', href: '//fonts.googleapis.com' },
+      { rel: 'dns-prefetch', href: '//fonts.gstatic.com' },
+      { rel: 'dns-prefetch', href: '//api.google.com' },
+      
+      // Preconnect for critical third parties
+      { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+      { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: 'anonymous' },
+      
+      // Module preload for critical JS
+      { rel: 'modulepreload', href: '/assets/main.js' }
+    ];
+    
+    hints.forEach(hint => {
+      const existingLink = document.querySelector(`link[href="${hint.href}"]`);
+      if (!existingLink) {
+        const link = document.createElement('link');
+        link.rel = hint.rel;
+        link.href = hint.href;
+        if (hint.crossorigin) {
+          link.crossOrigin = hint.crossorigin;
+        }
+        document.head.appendChild(link);
+      }
+    });
+  }, []);
+
+  // Service Worker with advanced caching strategies
+  const registerServiceWorker = useCallback(async () => {
+    if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
+      try {
+        const registration = await navigator.serviceWorker.register('/sw.js', {
+          scope: '/'
+        });
+        
+        console.log('Service Worker registered:', registration);
+        
+        // Handle updates
+        registration.addEventListener('updatefound', () => {
+          const newWorker = registration.installing;
+          if (newWorker) {
+            newWorker.addEventListener('statechange', () => {
+              if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                // Show update notification
+                showUpdateNotification();
+              }
+            });
+          }
+        });
+        
+        // Background sync for offline forms
+        if ('sync' in window.ServiceWorkerRegistration.prototype) {
+          registration.sync.register('background-sync');
+        }
+        
+      } catch (error) {
+        console.error('Service Worker registration failed:', error);
+      }
+    }
+  }, []);
+
+  // Show update notification
+  const showUpdateNotification = () => {
+    const notification = document.createElement('div');
+    notification.className = 'fixed top-4 right-4 bg-blue-600 text-white p-4 rounded-lg shadow-lg z-50 transform translate-x-full transition-transform duration-300';
+    notification.innerHTML = `
+      <div class="flex items-center gap-3">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+        </svg>
+        <div>
+          <p class="font-medium">تحديث متوفر</p>
+          <p class="text-sm opacity-90">إصدار جديد من الموقع متاح</p>
+        </div>
+        <button onclick="window.location.reload()" class="ml-2 px-3 py-1 bg-white text-blue-600 rounded text-sm font-medium hover:bg-gray-100 transition-colors">
+          تحديث
+        </button>
+      </div>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Animate in
+    setTimeout(() => {
+      notification.style.transform = 'translateX(0)';
+    }, 100);
+    
+    // Auto hide after 10 seconds
+    setTimeout(() => {
+      notification.style.transform = 'translateX(full)';
+      setTimeout(() => notification.remove(), 300);
+    }, 10000);
+  };
+
+  // Initialize all optimizations
+  useEffect(() => {
+    const initOptimizations = async () => {
+      // Phase 1: Critical resources
+      addResourceHints();
+      preloadResources();
+      
+      // Phase 2: Performance monitoring
+      monitorCoreWebVitals();
+      
+      // Phase 3: User experience
+      respectReducedMotion();
+      optimizeImages();
+      
+      // Phase 4: Observers and handlers
+      const observer = createIntersectionObserver();
+      if (observer) {
+        // Wait for DOM to be ready
+        const checkElements = () => {
+          const elements = document.querySelectorAll('.reveal, [data-animation], .lazy');
+          if (elements.length > 0) {
+            elements.forEach(el => observer.observe(el));
+          } else {
+            // Retry after a short delay
+            setTimeout(checkElements, 100);
+          }
+        };
+        checkElements();
+      }
+      
+      // Setup scroll optimization
+      const optimizedScroll = optimizeScrolling();
+      window.addEventListener('scroll', optimizedScroll, { passive: true });
+      
+      // Phase 5: Service worker (non-blocking)
+      setTimeout(() => {
+        registerServiceWorker();
+      }, 2000);
+      
+      return () => {
+        window.removeEventListener('scroll', optimizedScroll);
+        observer?.disconnect();
+      };
+    };
+    
+    // Start optimizations after a short delay to avoid blocking initial render
+    const timeoutId = setTimeout(initOptimizations, 50);
+    
+    return () => clearTimeout(timeoutId);
+  }, [createIntersectionObserver, optimizeScrolling, preloadResources, addResourceHints, optimizeImages, respectReducedMotion, monitorCoreWebVitals, registerServiceWorker]);
+
+  // Component doesn't render anything visible
   return null;
 };
 
-// مكون Intersection Observer للرسوم المتحركة عند الظهور
-interface InViewAnimationProps {
-  children: React.ReactNode;
-  animation?: string;
-  threshold?: number;
-  rootMargin?: string;
-  className?: string;
-}
-
-export const InViewAnimation: React.FC<InViewAnimationProps> = ({
-  children,
-  animation = 'fade-in-up',
-  threshold = 0.1,
-  rootMargin = '0px 0px -50px 0px',
-  className = ''
-}) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [hasAnimated, setHasAnimated] = useState(false);
-  const elementRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasAnimated) {
-          setIsVisible(true);
-          setHasAnimated(true);
-        }
-      },
-      { threshold, rootMargin }
-    );
-
-    if (elementRef.current) {
-      observer.observe(elementRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, [threshold, rootMargin, hasAnimated]);
-
-  const animationClasses = {
-    'fade-in': 'opacity-0 transition-opacity duration-1000',
-    'fade-in-up': 'opacity-0 translate-y-8 transition-all duration-1000',
-    'fade-in-down': 'opacity-0 -translate-y-8 transition-all duration-1000',
-    'fade-in-left': 'opacity-0 translate-x-8 transition-all duration-1000',
-    'fade-in-right': 'opacity-0 -translate-x-8 transition-all duration-1000',
-    'scale-in': 'opacity-0 scale-95 transition-all duration-1000',
-    'slide-in-bottom': 'opacity-0 translate-y-full transition-all duration-1000'
-  };
-
-  const visibleClasses = {
-    'fade-in': 'opacity-100',
-    'fade-in-up': 'opacity-100 translate-y-0',
-    'fade-in-down': 'opacity-100 translate-y-0',
-    'fade-in-left': 'opacity-100 translate-x-0',
-    'fade-in-right': 'opacity-100 translate-x-0',
-    'scale-in': 'opacity-100 scale-100',
-    'slide-in-bottom': 'opacity-100 translate-y-0'
-  };
-
-  return (
-    <div
-      ref={elementRef}
-      className={`${
-        animationClasses[animation as keyof typeof animationClasses] || animationClasses['fade-in-up']
-      } ${
-        isVisible ? visibleClasses[animation as keyof typeof visibleClasses] || visibleClasses['fade-in-up'] : ''
-      } ${className}`}
-    >
-      {children}
-    </div>
-  );
-};
-
-// مكون تحسين الأداء العام
-interface PerformanceOptimizerProps {
-  children: React.ReactNode;
-}
-
-export const PerformanceOptimizer: React.FC<PerformanceOptimizerProps> = ({ children }) => {
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-
-    // Preload critical resources
-    const preloadResources = () => {
-      // Preload critical fonts
-      const fontLink = document.createElement('link');
-      fontLink.rel = 'preload';
-      fontLink.href = 'https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap';
-      fontLink.as = 'style';
-      fontLink.crossOrigin = 'anonymous';
-      document.head.appendChild(fontLink);
-
-      // Preload critical images
-      const heroImage = new Image();
-      heroImage.src = 'https://images.pexels.com/photos/5669602/pexels-photo-5669602.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=1';
-    };
-
-    const optimizePerformance = () => {
-      // Defer non-critical JavaScript
-      const scripts = document.querySelectorAll('script[defer]');
-      scripts.forEach(script => {
-        if (script.getAttribute('data-loaded') !== 'true') {
-          script.setAttribute('data-loaded', 'true');
-        }
-      });
-
-      // Optimize images loading
-      const images = document.querySelectorAll('img[loading="lazy"]');
-      const imageObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const img = entry.target as HTMLImageElement;
-            if (img.dataset.src) {
-              img.src = img.dataset.src;
-              img.removeAttribute('data-src');
-            }
-            imageObserver.unobserve(img);
-          }
-        });
-      });
-
-      images.forEach(img => imageObserver.observe(img));
-    };
-
-    // تشغيل التحسينات بعد تحميل الصفحة
-    if (document.readyState === 'complete') {
-      preloadResources();
-      optimizePerformance();
-    } else {
-      window.addEventListener('load', () => {
-        preloadResources();
-        optimizePerformance();
-      });
-    }
-
-    // Service Worker registration للتخزين المؤقت
-    if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
-      navigator.serviceWorker.register('/sw.js')
-        .then((registration) => {
-          console.log('SW registered: ', registration);
-        })
-        .catch((registrationError) => {
-          console.log('SW registration failed: ', registrationError);
-        });
-    }
-
-  }, []);
-
-  if (!isClient) {
-    return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-teal-500 mx-auto mb-4"></div>
-          <p className="text-slate-600">جار تحميل الموقع...</p>
-        </div>
-      </div>
-    );
-  }
-
-  return <>{children}</>;
-};
-
-// Hook للحصول على معلومات الأداء
-export const usePerformanceMetrics = () => {
-  const [metrics, setMetrics] = useState<{
-    loadTime: number;
-    domContentLoaded: number;
-    firstContentfulPaint: number;
-  } | null>(null);
-
-  useEffect(() => {
-    const measurePerformance = () => {
-      if ('performance' in window) {
-        const navigation = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
-        const paint = performance.getEntriesByType('paint');
-        const fcp = paint.find(entry => entry.name === 'first-contentful-paint');
-
-        setMetrics({
-          loadTime: navigation.loadEventEnd - navigation.fetchStart,
-          domContentLoaded: navigation.domContentLoadedEventEnd - navigation.fetchStart,
-          firstContentfulPaint: fcp ? fcp.startTime : 0
-        });
-      }
-    };
-
-    if (document.readyState === 'complete') {
-      measurePerformance();
-    } else {
-      window.addEventListener('load', measurePerformance);
-    }
-
-    return () => {
-      window.removeEventListener('load', measurePerformance);
-    };
-  }, []);
-
-  return metrics;
-};
-
-export default PerformanceOptimizer;
+export default React.memo(PerformanceOptimizer);
