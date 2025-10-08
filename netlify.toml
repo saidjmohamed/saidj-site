@@ -1,0 +1,140 @@
+[build]
+  publish = "dist"
+  command = "npm run build"
+  
+  [build.environment]
+    NODE_VERSION = "20"
+    VITE_ENV = "production"
+    VITE_SITE_URL = "https://saidj-law-office.netlify.app"
+    
+[build.processing]
+  skip_processing = false
+  
+[build.processing.css]
+  bundle = true
+  minify = true
+  
+[build.processing.js]
+  bundle = true
+  minify = true
+  
+[build.processing.html]
+  pretty_urls = true
+  
+[build.processing.images]
+  compress = true
+
+# Headers for security and performance
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Security Headers
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    
+    # Content Security Policy
+    Content-Security-Policy = """default-src 'self'; 
+      script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://cdnjs.cloudflare.com;
+      style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
+      font-src 'self' https://fonts.gstatic.com;
+      img-src 'self' data: https: blob:;
+      media-src 'self' https:;
+      connect-src 'self' https://www.google-analytics.com https://generativelanguage.googleapis.com https://wa.me;
+      frame-ancestors 'none';
+      base-uri 'self';
+      form-action 'self';"""
+    
+    # Performance Headers
+    Cache-Control = "public, max-age=31536000, immutable"
+    
+# Static assets caching
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    
+[[headers]]
+  for = "/*.woff2"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    
+[[headers]]
+  for = "/*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+    
+[[headers]]
+  for = "/*.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+    
+[[headers]]
+  for = "/*.webp"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+    
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+    
+[[headers]]
+  for = "/manifest.json"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+    
+[[headers]]
+  for = "*.html"
+  [headers.values]
+    Content-Language = "ar-DZ, en-US, fr-FR"
+
+# Redirects for SPA routing
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  
+[[redirects]]
+  from = "/ar/*"
+  to = "/index.html"
+  status = 200
+  
+[[redirects]]
+  from = "/en/*"
+  to = "/index.html"
+  status = 200
+  
+[[redirects]]
+  from = "/fr/*"
+  to = "/index.html"
+  status = 200
+  
+# Legacy URL redirects
+[[redirects]]
+  from = "/old-contact"
+  to = "/#contact"
+  status = 301
+  
+[[redirects]]
+  from = "/old-services"
+  to = "/#services"
+  status = 301
+
+# Plugins
+[[plugins]]
+  package = "@netlify/plugin-lighthouse"
+  
+[[plugins]]
+  package = "netlify-plugin-submit-sitemap"
+  
+# Extensions
+[[extensions]]
+  package = "neon"

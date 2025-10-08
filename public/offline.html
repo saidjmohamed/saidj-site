@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عذراً - لا يوجد اتصال بالإنترنت | الأستاذ سايج محمد</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Cairo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .offline-container {
+            max-width: 500px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .offline-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 30px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+        }
+        
+        h1 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+        
+        .contact-info {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 25px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .contact-info h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #ffd700;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 10px 0;
+            font-size: 14px;
+        }
+        
+        .retry-btn {
+            background: linear-gradient(45deg, #00d2ff, #3a7bd5);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            min-width: 160px;
+        }
+        
+        .retry-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 210, 255, 0.3);
+        }
+        
+        .retry-btn:active {
+            transform: translateY(0);
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        .emergency-contact {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 25px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .emergency-contact h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .phone-link {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .phone-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+        
+        @media (max-width: 480px) {
+            .offline-container {
+                padding: 25px;
+                margin: 10px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            p {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="offline-container">
+        <div class="offline-icon pulse">
+            🌐
+        </div>
+        
+        <h1>عذراً - لا يوجد اتصال بالإنترنت</h1>
+        <p>يبدو أن اتصالك بالإنترنت منقطع في الوقت الحالي. يرجى التحقق من اتصالك وإعادة المحاولة.</p>
+        
+        <div class="contact-info">
+            <h3>📞 يمكنك التواصل معنا مباشرة</h3>
+            <div class="contact-item">
+                <span>📞</span>
+                <span>الهاتف: +213 558 357 689</span>
+            </div>
+            <div class="contact-item">
+                <span>📱</span>
+                <span>واتساب: +213 558 357 689</span>
+            </div>
+            <div class="contact-item">
+                <span>📧</span>
+                <span>SAIDJ.MOHAMED@GMAIL.COM</span>
+            </div>
+            <div class="contact-item">
+                <span>📍</span>
+                <span>12 شارع الإخوة بوعدو، بئر مراد رايس</span>
+            </div>
+        </div>
+        
+        <button class="retry-btn" onclick="window.location.reload()">
+            🔄 إعادة المحاولة
+        </button>
+        
+        <div class="emergency-contact">
+            <h3>🆘 للحالات الطارئة</h3>
+            <a href="tel:+213558357689" class="phone-link">
+                <span>📞</span>
+                <span>اتصال فوري</span>
+            </a>
+        </div>
+    </div>
+    
+    <script>
+        // Check connection status
+        function updateOnlineStatus() {
+            const status = navigator.onLine;
+            if (status) {
+                // Connection is back, reload the page
+                window.location.reload();
+            }
+        }
+        
+        // Listen for connection changes
+        window.addEventListener('online', updateOnlineStatus);
+        window.addEventListener('offline', updateOnlineStatus);
+        
+        // Auto-retry every 30 seconds
+        setInterval(() => {
+            if (navigator.onLine) {
+                window.location.reload();
+            }
+        }, 30000);
+        
+        // Show connection status
+        console.log('Connection status:', navigator.onLine ? 'Online' : 'Offline');
+    </script>
+</body>
+</html>
