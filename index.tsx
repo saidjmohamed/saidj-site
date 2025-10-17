@@ -12,16 +12,22 @@ if (!rootElement) {
 const root = ReactDOM.createRoot(rootElement);
 
 const getApiKey = (): string | undefined => {
-  // Prioritize the key injected by Netlify for the live site
+  // First, check for environment variable (Vite uses import.meta.env)
+  if (import.meta.env.VITE_GEMINI_API_KEY) {
+    return import.meta.env.VITE_GEMINI_API_KEY as string;
+  }
+  
+  // Then, check if key injected by hosting platform (like Netlify/Vercel)
   if ((window as any).GEMINI_API_KEY && (window as any).GEMINI_API_KEY.startsWith('AIza')) {
     return (window as any).GEMINI_API_KEY;
   }
-  // Fallback key for local/preview environment (like AI Studio)
-  return "AIzaSyDQBXT3beWMHm21zo8Rvk0tYf7noxj4OPs";
+  
+  // Return undefined if no API key is found
+  return undefined;
 };
 
 // This function attempts to render the app.
-// It will be called after the entire page is loaded to ensure Netlify's script injection has run.
+// It will be called after the entire page is loaded to ensure any script injection has run.
 const initializeApp = () => {
   const apiKey = getApiKey();
   
@@ -36,17 +42,14 @@ const initializeApp = () => {
     // If the key is missing or invalid, render a helpful error page
     const lang: Language = getInitialLanguage();
     root.render(
-      <React.StrictMode>
-        <ErrorDisplay 
-            title={translations[lang].error_title}
-            message_p1={translations[lang].error_message_p1}
-            message_p2={translations[lang].error_message_p2}
-        />
-      </React.StrictMode>
+      <ErrorDisplay
+        title={translations[lang].error_title}
+        message_p1={translations[lang].error_message_p1}
+        message_p2={translations[lang].error_message_p2}
+      />
     );
   }
 };
 
-// Wait for the entire page to load, including Netlify's injected script.
-// This is the most robust way to avoid the race condition that causes a white screen.
+// Wait for the entire page to load, including any injected scripts.
 window.addEventListener('load', initializeApp);
