@@ -29,26 +29,13 @@ const getApiKey = (): string | undefined => {
 // This function attempts to render the app.
 // It will be called after the entire page is loaded to ensure any script injection has run.
 const initializeApp = () => {
-  const apiKey = getApiKey();
-  
-  if (apiKey && apiKey.startsWith('AIza')) {
-    // If key exists and looks valid, render the main app
-    root.render(
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
-    );
-  } else {
-    // If the key is missing or invalid, render a helpful error page
-    const lang: Language = getInitialLanguage();
-    root.render(
-      <ErrorDisplay
-        title={translations[lang].error_title}
-        message_p1={translations[lang].error_message_p1}
-        message_p2={translations[lang].error_message_p2}
-      />
-    );
-  }
+  // Always render the main app, regardless of API key presence
+  // The Chatbot component handles missing keys gracefully
+  root.render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  );
 };
 
 // Wait for the entire page to load, including any injected scripts.
