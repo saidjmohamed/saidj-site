@@ -157,65 +157,66 @@ const MainSite: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-violet-900 text-white overflow-x-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-[#0a1628] via-[#1a2744] to-[#0a1628] text-white overflow-x-hidden">
       {/* Scroll Progress Indicator */}
-      <div 
-        className="fixed top-0 left-0 h-1 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 z-50 transition-all duration-300"
+      <div
+        className="fixed top-0 left-0 h-1 bg-gradient-to-r from-[#d4af37] via-[#f4d984] to-[#d4af37] z-50 transition-all duration-300 shadow-lg"
         style={{ width: `${scrollProgress}%` }}
       />
 
-      {/* Background Effects */}
+      {/* Premium Background Effects */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float" />
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-cyan-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float" style={{ animationDelay: '2s' }} />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-pulse" />
+        <div className="absolute -top-40 -right-40 w-96 h-96 bg-[#d4af37] rounded-full mix-blend-screen filter blur-3xl opacity-15 animate-float" />
+        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-[#3b82f6] rounded-full mix-blend-screen filter blur-3xl opacity-10 animate-float" style={{ animationDelay: '3s' }} />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#d4af37] rounded-full mix-blend-screen filter blur-3xl opacity-5 animate-pulse" />
+        <div className="absolute inset-0 bg-grid-pattern opacity-20" />
       </div>
 
       {/* Main Content */}
       <div className="relative z-10">
         <ModernHeader />
-        
+
         <main className="relative">
           {/* Hero Section */}
           <ModernHero />
-          
+
           {/* About Section */}
           <Section id="about" background="glass">
             <About />
           </Section>
-          
+
           {/* Services Section */}
           <Section id="services" background="gradient">
             <PracticeAreas />
           </Section>
-          
+
           {/* Articles Section */}
           <Section id="articles" background="glass">
             <LegalArticles />
           </Section>
-          
+
           {/* Testimonials Section */}
           <Section id="testimonials" background="default">
             <Testimonials />
           </Section>
-          
+
           {/* FAQ Section */}
           <Section id="faq" background="glass">
             <FAQ />
           </Section>
-          
+
           {/* Contact Section */}
           <Section id="contact" background="gradient">
             <Contact />
           </Section>
         </main>
-        
+
         <Footer />
       </div>
 
       {/* Interactive Elements */}
-      <FloatingButtons 
-        onChatbotToggle={() => setIsChatbotOpen(prev => !prev)} 
+      <FloatingButtons
+        onChatbotToggle={() => setIsChatbotOpen(prev => !prev)}
         onAction={handleFloatingButtonAction}
       />
       <Chatbot isOpen={isChatbotOpen} onClose={() => setIsChatbotOpen(false)} />
@@ -232,12 +233,12 @@ const MainSite: React.FC = () => {
         <button
           onClick={() => scrollToSection('home')}
           className="
-            fixed bottom-8 right-8 z-40 p-3 rounded-full
-            bg-gradient-to-r from-cyan-500 to-purple-600
-            text-white shadow-lg hover:shadow-xl
+            fixed bottom-8 right-8 z-40 p-4 rounded-full
+            bg-gradient-to-r from-[#d4af37] to-[#aa8a2a]
+            text-[#0a1628] shadow-xl hover:shadow-2xl
             transform transition-all duration-300
             hover:scale-110 hover:-translate-y-1
-            animate-bounce-in
+            animate-bounce-in border border-[#f4d984]/30
           "
           aria-label="العودة إلى الأعلى"
         >
@@ -308,7 +309,7 @@ const App: React.FC = () => {
         <div className="text-center p-8">
           <h1 className="text-4xl font-bold mb-4">عذراً، حدث خطأ</h1>
           <p className="text-xl mb-8">نعتذر عن هذا الخطأ. يرجى إعادة تحميل الصفحة.</p>
-          <button 
+          <button
             onClick={() => window.location.reload()}
             className="btn-modern btn-primary px-8 py-3"
           >

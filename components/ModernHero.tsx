@@ -103,7 +103,7 @@ const ModernHero: React.FC = () => {
         const dx = mousePosition.x - particle.x;
         const dy = mousePosition.y - particle.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
-        
+
         if (distance < 100) {
           particle.vx += (dx / distance) * 0.1;
           particle.vy += (dy / distance) * 0.1;
@@ -125,11 +125,11 @@ const ModernHero: React.FC = () => {
         // Draw connections
         particles.forEach(otherParticle => {
           if (particle.id >= otherParticle.id) return;
-          
+
           const dx = particle.x - otherParticle.x;
           const dy = particle.y - otherParticle.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
-          
+
           if (distance < 150) {
             ctx.save();
             ctx.globalAlpha = (1 - distance / 150) * 0.2;
@@ -165,19 +165,19 @@ const ModernHero: React.FC = () => {
         className="absolute inset-0 z-0"
         style={{ pointerEvents: 'none' }}
       />
-      
+
       {/* Gradient Overlays */}
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-blue-900/20 to-pink-900/20 z-10"></div>
-      <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/10 via-transparent to-purple-500/10 z-10"></div>
-      
-      {/* Floating Geometric Shapes */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#0a1628]/90 via-[#1a2744]/80 to-[#0a1628]/90 z-10"></div>
+      <div className="absolute inset-0 bg-gradient-to-tr from-[#d4af37]/10 via-transparent to-[#3b82f6]/10 z-10"></div>
+
+      {/* Floating Geometric Shapes - Premium Gold Theme */}
       <div className="absolute inset-0 z-10 overflow-hidden">
-        <div className="absolute top-20 left-10 w-20 h-20 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full opacity-20 animate-float" style={{ animationDelay: '0s' }}></div>
-        <div className="absolute top-40 right-20 w-16 h-16 bg-gradient-to-r from-purple-400 to-pink-500 rounded-lg opacity-25 animate-float" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute bottom-40 left-20 w-12 h-12 bg-gradient-to-r from-green-400 to-cyan-500 rounded-full opacity-30 animate-float" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute bottom-20 right-10 w-24 h-24 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-lg opacity-15 animate-float" style={{ animationDelay: '0.5s' }}></div>
-        <div className="absolute top-1/3 left-1/3 w-8 h-8 bg-gradient-to-r from-indigo-400 to-purple-500 rounded-full opacity-40 animate-float" style={{ animationDelay: '1.5s' }}></div>
-        <div className="absolute top-2/3 right-1/3 w-14 h-14 bg-gradient-to-r from-rose-400 to-pink-500 rounded-lg opacity-25 animate-float" style={{ animationDelay: '2.5s' }}></div>
+        <div className="absolute top-20 left-10 w-20 h-20 bg-gradient-to-r from-[#d4af37] to-[#f4d984] rounded-full opacity-20 animate-float" style={{ animationDelay: '0s' }}></div>
+        <div className="absolute top-40 right-20 w-16 h-16 bg-gradient-to-r from-[#3b82f6] to-[#60a5fa] rounded-lg opacity-20 animate-float" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute bottom-40 left-20 w-12 h-12 bg-gradient-to-r from-[#d4af37] to-[#aa8a2a] rounded-full opacity-25 animate-float" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute bottom-20 right-10 w-24 h-24 bg-gradient-to-r from-[#f4d984] to-[#d4af37] rounded-lg opacity-15 animate-float" style={{ animationDelay: '0.5s' }}></div>
+        <div className="absolute top-1/3 left-1/3 w-8 h-8 bg-gradient-to-r from-[#3b82f6] to-[#1d4ed8] rounded-full opacity-30 animate-float" style={{ animationDelay: '1.5s' }}></div>
+        <div className="absolute top-2/3 right-1/3 w-14 h-14 bg-gradient-to-r from-[#d4af37] to-[#f4d984] rounded-lg opacity-20 animate-float" style={{ animationDelay: '2.5s' }}></div>
       </div>
 
       {/* Main Content */}
@@ -188,7 +188,7 @@ const ModernHero: React.FC = () => {
             <h1 className="hero-title text-4xl md:text-6xl lg:text-7xl font-bold mb-4 text-gradient text-glow leading-tight">
               {t.header.title}
             </h1>
-            <div className="w-32 h-1 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 mx-auto rounded-full animate-pulse-glow"></div>
+            <div className="w-32 h-1 bg-gradient-to-r from-[#d4af37] via-[#f4d984] to-[#d4af37] mx-auto rounded-full animate-pulse-glow"></div>
           </div>
 
           {/* Animated Subtitle */}
@@ -215,7 +215,7 @@ const ModernHero: React.FC = () => {
                 {t.hero.contactButton}
               </span>
             </button>
-            
+
             <button className="btn-modern btn-outline group relative overflow-hidden px-8 py-4 text-lg font-semibold">
               <span className="relative z-10 flex items-center gap-3">
                 <svg className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -257,8 +257,8 @@ const ModernHero: React.FC = () => {
       {/* Modern Wave Effect */}
       <div className="absolute bottom-0 left-0 w-full overflow-hidden z-15">
         <svg className="relative block w-full h-20" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-          <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" 
-                className="fill-white/10"></path>
+          <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
+            className="fill-white/10"></path>
         </svg>
       </div>
     </section>

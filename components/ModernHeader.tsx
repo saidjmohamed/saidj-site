@@ -44,7 +44,7 @@ const ModernHeader: React.FC = () => {
         }
         return false;
       });
-      
+
       if (currentSection) {
         setActiveSection(currentSection);
       }
@@ -99,8 +99,8 @@ const ModernHeader: React.FC = () => {
         ref={headerRef}
         className={`
           fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out
-          ${isScrolled 
-            ? 'backdrop-blur-xl bg-white/10 border-b border-white/20 shadow-2xl' 
+          ${isScrolled
+            ? 'backdrop-blur-xl bg-white/10 border-b border-white/20 shadow-2xl'
             : 'bg-transparent'
           }
         `}
@@ -113,7 +113,7 @@ const ModernHeader: React.FC = () => {
         `} />
 
         {/* Background Glow Effect */}
-        <div 
+        <div
           className="absolute inset-0 pointer-events-none opacity-0 hover:opacity-100 transition-opacity duration-300"
           style={{
             background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(102, 126, 234, 0.1), transparent 40%)`
@@ -125,13 +125,13 @@ const ModernHeader: React.FC = () => {
             {/* Logo */}
             <div className="flex items-center space-x-4 group">
               <div className="relative">
-                <div className="w-12 h-12 bg-gradient-to-r from-cyan-400 to-purple-600 rounded-xl flex items-center justify-center text-white font-bold text-xl group-hover:scale-110 transition-all duration-300 shadow-lg group-hover:shadow-2xl">
+                <div className="w-12 h-12 bg-gradient-to-r from-[#d4af37] to-[#aa8a2a] rounded-xl flex items-center justify-center text-[#0a1628] font-bold text-xl group-hover:scale-110 transition-all duration-300 shadow-lg group-hover:shadow-2xl border border-[#f4d984]/30">
                   <span className="relative z-10">⚖️</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-purple-600 rounded-xl blur opacity-0 group-hover:opacity-50 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#d4af37] to-[#f4d984] rounded-xl blur opacity-0 group-hover:opacity-50 transition-opacity duration-300" />
                 </div>
               </div>
               <div className="hidden sm:block">
-                <h1 className="text-xl font-bold text-white group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:bg-clip-text group-hover:from-cyan-400 group-hover:to-purple-400 transition-all duration-300">
+                <h1 className="text-xl font-bold text-white group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:bg-clip-text group-hover:from-[#d4af37] group-hover:to-[#f4d984] transition-all duration-300">
                   {t.header.title}
                 </h1>
                 <p className="text-sm text-white/70 group-hover:text-white/90 transition-colors duration-300">
@@ -156,15 +156,15 @@ const ModernHeader: React.FC = () => {
                   `}
                 >
                   {/* Hover glow effect */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/20 to-purple-600/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur" />
-                  
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#d4af37]/20 to-[#aa8a2a]/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur" />
+
                   {/* Active indicator */}
                   {activeSection === item.key && (
-                    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-6 h-0.5 bg-gradient-to-r from-cyan-400 to-purple-600 rounded-full animate-pulse" />
+                    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-6 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#f4d984] rounded-full animate-pulse" />
                   )}
-                  
+
                   <span className="relative z-10">{item.label}</span>
-                  
+
                   {/* Shine effect */}
                   <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12" />
                 </button>
@@ -179,7 +179,7 @@ const ModernHeader: React.FC = () => {
               </div>
 
               {/* CTA Button */}
-              <button 
+              <button
                 onClick={() => scrollToSection('#contact')}
                 className="hidden sm:block btn-modern btn-primary px-6 py-2 text-sm font-semibold relative overflow-hidden group"
               >
@@ -212,8 +212,8 @@ const ModernHeader: React.FC = () => {
         ref={mobileMenuRef}
         className={`
           fixed top-20 left-4 right-4 z-40 lg:hidden transition-all duration-500 ease-out transform origin-top
-          ${isMobileMenuOpen 
-            ? 'opacity-100 scale-100 translate-y-0' 
+          ${isMobileMenuOpen
+            ? 'opacity-100 scale-100 translate-y-0'
             : 'opacity-0 scale-95 -translate-y-4 pointer-events-none'
           }
         `}
@@ -228,18 +228,18 @@ const ModernHeader: React.FC = () => {
                 className={`
                   w-full text-left px-4 py-3 rounded-xl text-white font-medium transition-all duration-300
                   ${activeSection === item.key
-                    ? 'bg-gradient-to-r from-cyan-400/20 to-purple-600/20 text-white'
+                    ? 'bg-gradient-to-r from-[#d4af37]/20 to-[#aa8a2a]/20 text-white'
                     : 'hover:bg-white/10 text-white/80 hover:text-white'
                   }
                   group relative overflow-hidden
                 `}
                 style={{ animationDelay: `${index * 50}ms` }}
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/10 to-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl" />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#d4af37]/10 to-[#aa8a2a]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl" />
                 <span className="relative z-10 flex items-center justify-between">
                   {item.label}
                   {activeSection === item.key && (
-                    <div className="w-2 h-2 bg-gradient-to-r from-cyan-400 to-purple-600 rounded-full animate-pulse" />
+                    <div className="w-2 h-2 bg-gradient-to-r from-[#d4af37] to-[#f4d984] rounded-full animate-pulse" />
                   )}
                 </span>
               </button>
@@ -253,7 +253,7 @@ const ModernHeader: React.FC = () => {
 
           {/* Mobile CTA */}
           <div className="mt-6">
-            <button 
+            <button
               onClick={() => scrollToSection('#contact')}
               className="w-full btn-modern btn-primary py-3 text-center font-semibold relative overflow-hidden group"
             >
@@ -270,7 +270,7 @@ const ModernHeader: React.FC = () => {
 
       {/* Mobile Menu Backdrop */}
       {isMobileMenuOpen && (
-        <div 
+        <div
           className="fixed inset-0 bg-black/50 backdrop-blur-sm z-30 lg:hidden animate-fade-in"
           onClick={() => setIsMobileMenuOpen(false)}
         />
